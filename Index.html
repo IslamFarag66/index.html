@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Dice Game</title>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  .game-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  .dice {
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    margin: 20px auto;
+    font-size: 64px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff6347;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+  .instructions {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  .question {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #555;
+  }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+  <h1>Roll the Dice for Your Question!</h1>
+  <div class="dice" id="dice">?</div>
+  <button onclick="rollDice()">Roll the Dice</button>
+  <button onclick="resetGame()">Reset</button>
+  <div class="question" id="question"></div>
+  <div class="instructions">
+    <p>Answer the question corresponding to the number:</p>
+    <ul>
+      <li>1: What is your favorite hobby?</li>
+      <li>2: Tell me about your last vacation.</li>
+      <li>3: Describe your dream job.</li>
+      <li>4: What is your favorite book or movie?</li>
+      <li>5: Talk about a memorable experience.</li>
+      <li>6: What are your plans for the future?</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    "What is your favorite hobby?",
+    "Tell me about your last vacation.",
+    "Describe your dream job.",
+    "What is your favorite book or movie?",
+    "Talk about a memorable experience.",
+    "What are your plans for the future?"
+  ];
+
+  function rollDice() {
+    const dice = document.getElementById('dice');
+    const questionDiv = document.getElementById('question');
+    const number = Math.floor(Math.random() * 6) + 1;
+    dice.textContent = number;
+    questionDiv.textContent = questions[number - 1];
+    playSound();
+  }
+
+  function resetGame() {
+    const dice = document.getElementById('dice');
+    const questionDiv = document.getElementById('question');
+    dice.textContent = '?';
+    questionDiv.textContent = '';
+  }
+
+  function playSound() {
+    const audio = new Audio('https://cdn.pixabay.com/download/audio/2021/08/11/audio_78b6d5c806.mp3?filename=dice-roll-6828.mp3');
+    audio.play();
+  }
+</script>
+
+</body>
+</html>
